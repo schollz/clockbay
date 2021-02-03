@@ -2,6 +2,12 @@
 // include the graphics library and initialize
 #include "U8glib.h"
 U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_DEV_0);
+// connections:
+// 3.3V  Vdd
+// Gnd Gnd
+// Analog 4  SDA
+// Analog 5  SCK
+
 
 // 2. DEFINE pin for clock input
 int inputClock = A3;
