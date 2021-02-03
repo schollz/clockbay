@@ -32,7 +32,7 @@ void setup() {
 float calculateBPM(float pulses, float totalMS) {
   float result;
   result = (pulses * 60) / (totalMS / 1000);
-  while (result > 300) {
+  while (result > 160) {
     result = result / 2;
   }
   return result;
