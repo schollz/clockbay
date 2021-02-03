@@ -1,7 +1,12 @@
-// pin for clock input
-int inputClock = A3; 
-// pins for clock outputs
-int outputClock[] = { 2, 3, 4}; 
+// 1. INSTALL U8glib from sketch -> include library -> manage libraries
+// include the graphics library and initialize
+#include "U8glib.h"
+U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_DEV_0);
+
+// 2. DEFINE pin for clock input
+int inputClock = A3;
+// 3. DEFINE pins for clock outputs
+int outputClock[] = { 2, 3, 4};
 int outputClockCount = 3;
 
 // state
@@ -13,6 +18,8 @@ void setup() {
   for (int i = 0; i < outputClockCount; i++) {
     pinMode(outputClock[i], OUTPUT);
   }
+  // set font
+  u8g.setFont(u8g_font_unifont);
   Serial.begin(9600);
 }
 
@@ -38,6 +45,7 @@ void loop() {
         float bpm = calculateBPM(numberOfPulses, (float)(millis() - startClockTime));
         Serial.print("bpm = ");
         Serial.println(bpm);
+        u8g.drawStr(20, 40, "Hello World."); // TODO show bpm
       }
     }
     for (int i = 0; i < outputClockCount; i++) {
